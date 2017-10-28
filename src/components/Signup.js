@@ -1,45 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView, Text, TextInput } from 'react-native';
+import { View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 
-const styles = {
-  inputStyle: {
-    color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
-    fontFamily: 'raleway-regular',
-    fontSize: 18,
-    lineHeight: 23,
-    borderWidth: 1,
-    borderColor: '#000',
-    flex: 2,
-  },
-  labelStyle: {
-    flex: 1,
-    fontFamily: 'raleway-regular',
-    fontSize: 18,
-  },
-  fieldStyle: {
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  containerStyle: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-};
-
+import styles from '../styles/Signup';
 
 const Signup = ({
   handleMobileNumberChange,
   handleNameChange,
-  mobileNumber,
-  name,
+  submitUser,
+  // mobileNumber,
+  // name,
+  user,
 }) => (
   <ScrollView
     scrollEnabled={false}
@@ -51,7 +22,7 @@ const Signup = ({
         autocorrect={false}
         onChangeText={handleNameChange}
         style={styles.inputStyle}
-        value={name}
+        value={user.name}
       />
     </View>
     <View style={styles.fieldStyle}>
@@ -60,23 +31,30 @@ const Signup = ({
         autocorrect={false}
         onChangeText={handleMobileNumberChange}
         style={styles.inputStyle}
-        value={mobileNumber}
+        value={user.mobileNumber}
         keyboardType="phone-pad"
       />
+    </View>
+    <View style={styles.buttonStyleWrapper}>
+      <TouchableOpacity onPress={() => user.name && user.mobileNumber && submitUser(user)} style={styles.buttonStyle}>
+        <Text
+          style={styles.buttonTextStyle}
+        >
+          Submit
+        </Text>
+      </TouchableOpacity>
     </View>
   </ScrollView>
 );
 
-Signup.defaultProps = {
-  name: '',
-  mobileNumber: '',
-};
-
 Signup.propTypes = {
-  mobileNumber: PropTypes.string,
-  name: PropTypes.string,
-  handleNameChange: PropTypes.func.isRequired,
   handleMobileNumberChange: PropTypes.func.isRequired,
+  handleNameChange: PropTypes.func.isRequired,
+  submitUser: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    mobileNumber: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default Signup;

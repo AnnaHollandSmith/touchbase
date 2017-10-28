@@ -1,12 +1,13 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
 import { AppLoading, Asset, Font } from 'expo';
 import reducers from './src/reducers';
 import Signup from './src/containers/Signup';
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 const logo = require('./assets/images/touchbase.png');
 const ralewayRegular = require('./assets/Raleway/Raleway-Regular.ttf');
