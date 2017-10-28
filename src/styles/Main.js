@@ -6,10 +6,11 @@ const styles = {
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#1976d2',
-    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
   },
   buttonCenterStyle: {
     marginLeft: 3,
@@ -18,7 +19,7 @@ const styles = {
   buttonSelectedStyle: {
     backgroundColor: '#1976d2',
   },
-  buttonStyleWrapper: {
+  buttonWrapperStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -52,9 +53,13 @@ const styles = {
     fontFamily: 'raleway-regular',
     fontSize: 18,
     lineHeight: 23,
+    borderRadius: 5,
     borderWidth: 1,
-    borderColor: '#000',
-    flex: 2,
+    borderColor: '#1976d2',
+    marginBottom: 20,
+    marginTop: 20,
+    width: 306,
+    height: 40,
   },
   labelStyle: {
     justifyContent: 'center',

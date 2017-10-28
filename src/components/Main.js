@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Location, Permissions } from 'expo';
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
@@ -11,12 +11,13 @@ const {
   containerStyle,
   fieldStyle,
   labelStyle,
-  buttonStyleWrapper,
+  buttonWrapperStyle,
   buttonTextStyle,
   buttonSelectedTextStyle,
   buttonStyle,
   buttonSelectedStyle,
   buttonCenterStyle,
+  inputStyle,
 } = styles;
 
 class Main extends Component {
@@ -33,16 +34,21 @@ class Main extends Component {
   }
 
   render() {
-    const { mode, handleModeSelect } = this.props;
+    const {
+      mode,
+      handleModeSelect,
+      destinationPostcode,
+      handleDestinationPostcodeChange,
+    } = this.props;
     return (
       <ScrollView
         scrollEnabled={false}
         contentContainerStyle={containerStyle}
       >
         <View style={fieldStyle}>
-          <Text style={labelStyle}>Method of transportation</Text>
+          <Text style={labelStyle}>Method of Transportation</Text>
         </View>
-        <View style={buttonStyleWrapper}>
+        <View style={buttonWrapperStyle}>
           <TouchableOpacity
             onPress={() => handleModeSelect('walking')}
             style={[
@@ -62,8 +68,8 @@ class Main extends Component {
             onPress={() => handleModeSelect('car')}
             style={[
               buttonStyle,
-              buttonCenterStyle,
               mode === 'car' && buttonSelectedStyle,
+              buttonCenterStyle,
             ]}
           >
             <Ionicons
@@ -90,6 +96,17 @@ class Main extends Component {
             />
           </TouchableOpacity>
         </View>
+        <View style={fieldStyle}>
+          <Text style={labelStyle}>Destination Postcode</Text>
+        </View>
+        <View style={fieldStyle}>
+          <TextInput
+            autocorrect={false}
+            onChangeText={handleDestinationPostcodeChange}
+            style={inputStyle}
+            value={destinationPostcode}
+          />
+        </View>
       </ScrollView>
     );
   }
@@ -97,10 +114,13 @@ class Main extends Component {
 
 Main.defaultProps = {
   mode: '',
+  destinationPostcode: '',
 };
 
 Main.propTypes = {
   mode: PropTypes.string,
+  destinationPostcode: PropTypes.string,
+  handleDestinationPostcodeChange: PropTypes.func.isRequired,
   handleModeSelect: PropTypes.func.isRequired,
   handleUpdateOrigin: PropTypes.func.isRequired,
 };

@@ -1,4 +1,8 @@
-import { UPDATE_MODE, UPDATE_ORIGIN } from '../actions/journey';
+import {
+  UPDATE_MODE,
+  UPDATE_ORIGIN,
+  UPDATE_DESTINATION_POSTCODE,
+} from '../actions/journey';
 
 const initialState = {
   originSet: false,
@@ -10,6 +14,7 @@ const initialState = {
   destination: {
     lat: 0.0,
     lng: 0.0,
+    postcode: '',
   },
   mode: '',
   contacts: [],
@@ -34,6 +39,17 @@ const reducer = (state = initialState, action) => {
           ...state.origin,
           lat: origin.latitude,
           lng: origin.longitude,
+        },
+      };
+    }
+
+    case UPDATE_DESTINATION_POSTCODE: {
+      const { postcode } = action;
+      return {
+        ...state,
+        destination: {
+          ...state.destination,
+          postcode,
         },
       };
     }

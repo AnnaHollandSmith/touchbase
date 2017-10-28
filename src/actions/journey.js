@@ -11,3 +11,9 @@ export const updateOrigin = origin => ({
   type: UPDATE_ORIGIN,
   origin,
 });
+
+export const UPDATE_DESTINATION_POSTCODE = 'UPDATE_DESTINATION_POSTCODE';
+export const updateDestinationPostcode = postcode => ({
+  type: UPDATE_DESTINATION_POSTCODE,
+  postcode,
+});
