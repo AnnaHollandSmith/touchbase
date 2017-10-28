@@ -1,16 +1,24 @@
-import { UPDATE_NAME, UPDATE_MOBILE_NUMBER } from '../actions/user';
+import { UPDATE_NAME, UPDATE_MOBILE_NUMBER, INITIALIZE_USER } from '../actions/user';
 
 const initialState = {
+  initialized: false,
   name: '',
   mobileNumber: '',
-  homeAddress: {
-    lat: 0.0,
-    long: 0.0,
-  },
 };
 
-const user = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case INITIALIZE_USER: {
+      const { user } = action;
+      const { name, mobileNumber } = user;
+      return {
+        ...state,
+        initialized: true,
+        name,
+        mobileNumber,
+      };
+    }
+
     case UPDATE_NAME: {
       const { name } = action;
       return {
@@ -32,4 +40,4 @@ const user = (state = initialState, action) => {
   }
 };
 
-export default user;
+export default reducer;

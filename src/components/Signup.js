@@ -8,8 +8,6 @@ const Signup = ({
   handleMobileNumberChange,
   handleNameChange,
   submitUser,
-  // mobileNumber,
-  // name,
   user,
 }) => (
   <ScrollView
@@ -36,7 +34,10 @@ const Signup = ({
       />
     </View>
     <View style={styles.buttonStyleWrapper}>
-      <TouchableOpacity onPress={() => user.name && user.mobileNumber && submitUser(user)} style={styles.buttonStyle}>
+      <TouchableOpacity
+        onPress={() => user.name && user.mobileNumber && submitUser(user)}
+        style={styles.buttonStyle}
+      >
         <Text
           style={styles.buttonTextStyle}
         >

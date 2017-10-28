@@ -3,14 +3,18 @@ import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import { AppLoading, Asset, Font } from 'expo';
+import { AppLoading, Asset, Font, SecureStore } from 'expo';
 import reducers from './src/reducers';
-import Signup from './src/containers/Signup';
+import Main from './src/containers/Main';
+import { checkUserInitialized } from './src/actions/user';
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+store.dispatch(checkUserInitialized());
 
 const logo = require('./assets/images/touchbase.png');
 const ralewayRegular = require('./assets/Raleway/Raleway-Regular.ttf');
+
+SecureStore.deleteItemAsync('user');
 
 class App extends Component {
   constructor() {
@@ -54,7 +58,7 @@ class App extends Component {
     }
     return (
       <Provider store={store}>
-        <Signup />
+        <Main />
       </Provider>
     );
   }
