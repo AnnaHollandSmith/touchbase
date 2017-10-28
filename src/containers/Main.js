@@ -6,7 +6,6 @@ import { updateMode, updateOrigin } from '../actions/journey';
 const mapStateToProps = (state) => {
   const { user, journey } = state;
   const { mode } = journey;
-  console.log(journey);
   return ({
     initialized: user.initialized,
     mode,
