@@ -14,7 +14,7 @@ store.dispatch(checkUserInitialized());
 const logo = require('./assets/images/touchbase.png');
 const ralewayRegular = require('./assets/Raleway/Raleway-Regular.ttf');
 
-SecureStore.deleteItemAsync('user');
+// SecureStore.deleteItemAsync('user');
 
 class App extends Component {
   constructor() {
