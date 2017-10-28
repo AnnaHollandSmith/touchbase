@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import App from '../components';
 
 const mapStateToProps = state => ({
-  text: state.reducer.hello,
+  user: state.user,
 });
 
-const Root = connect(
-  mapStateToProps,
-)(App);
+const Root = connect(mapStateToProps)(App);
 
 export default Root;

@@ -10,8 +10,9 @@
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/app-icon.png",
     "loading": {
-      "icon": "./assets/icons/loading-icon.png",
-      "hideExponentText": false
+      "icon": "./assets/icons/touchbase.png",
+      "hideExponentText": true,
+      "backgroundColor": "#000"
     },
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]
