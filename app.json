@@ -9,10 +9,10 @@
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/app-icon.png",
-    "loading": {
-      "icon": "./assets/icons/touchbase.png",
-      "hideExponentText": true,
-      "backgroundColor": "#000"
+    "splash": {
+      "image": "./assets/icons/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1976d2"
     },
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]

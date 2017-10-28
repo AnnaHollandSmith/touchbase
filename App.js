@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { AppLoading, Asset, Font } from 'expo';
 import reducers from './src/reducers';
-import Root from './src/containers';
+import Signup from './src/containers/Signup';
 
 const store = createStore(reducers);
 
@@ -53,7 +53,7 @@ class App extends Component {
     }
     return (
       <Provider store={store}>
-        <Root />
+        <Signup />
       </Provider>
     );
   }
