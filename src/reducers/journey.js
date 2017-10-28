@@ -1,15 +1,17 @@
-import { UPDATE_MODE } from '../actions/journey';
+import { UPDATE_MODE, UPDATE_ORIGIN } from '../actions/journey';
 
 const initialState = {
+  originSet: false,
   origin: {
-    lat: 0.0,
-    long: 0.0,
+    lat: 53.4773,
+    lng: 2.2550,
   },
+  destinationSet: false,
   destination: {
     lat: 0.0,
-    long: 0.0,
+    lng: 0.0,
   },
-  mode: 'car',
+  mode: '',
   contacts: [],
 };
 
@@ -22,6 +24,20 @@ const reducer = (state = initialState, action) => {
         mode,
       };
     }
+
+    case UPDATE_ORIGIN: {
+      const { origin } = action;
+      return {
+        ...state,
+        originSet: true,
+        origin: {
+          ...state.origin,
+          lat: origin.latitude,
+          lng: origin.longitude,
+        },
+      };
+    }
+
     default:
       return state;
   }
