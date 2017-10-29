@@ -21,12 +21,22 @@ const initializeUser = user => ({
 
 export const SUBMIT_USER_DETAILS = 'SUBMIT_USER_DETAILS';
 export const submitUserDetails = user => dispatch =>
-  axios.post('https://touchbaseapp.herokuapp.com/users', user)
+  axios.get(`https://touchbaseapp.herokuapp.com/users/${user.mobileNumber.replace(/^0/, '44')}`)
     .then(({ data }) => {
-      SecureStore.setItemAsync('user', JSON.stringify(data));
+      SecureStore.setItemAsync('user', JSON.stringify({
+        name: data.name,
+        mobileNumber: data.mobileNumber,
+      }));
       dispatch(initializeUser(data));
     })
-    .catch(err => console.log(err));
+    .catch(() => {
+      axios.post('https://touchbaseapp.herokuapp.com/users', user)
+        .then(({ data }) => {
+          SecureStore.setItemAsync('user', JSON.stringify(data));
+          dispatch(initializeUser(data));
+        })
+        .catch(err => console.log(err));
+    });
 
 export const CHECK_USER_INITIALIZED = 'CHECK_USER_INITIALIZED';
 export const checkUserInitialized = () => (dispatch) => {
