@@ -5,6 +5,7 @@ import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-nativ
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
 
+import ContactsList from './contacts/List';
 import styles from '../styles/Main';
 
 const {
@@ -21,6 +22,17 @@ const {
 } = styles;
 
 class Main extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      showContacts: false,
+    };
+
+    this.handleCloseContacts = this.handleCloseContacts.bind(this);
+    this.handleOpenContacts = this.handleOpenContacts.bind(this);
+  }
+
   componentWillMount() {
     this.getLocationAsync();
     this.getContactsAsync();
@@ -41,9 +53,22 @@ class Main extends Component {
 
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.PHONE_NUMBERS],
+      pageSize: 10,
     });
 
     this.props.handleGetContacts(data);
+  }
+
+  handleCloseContacts() {
+    this.setState({
+      showContacts: false,
+    });
+  }
+
+  handleOpenContacts() {
+    this.setState({
+      showContacts: true,
+    });
   }
 
   render() {
@@ -53,7 +78,9 @@ class Main extends Component {
       destinationPostcode,
       handleDestinationPostcodeChange,
       checkDestinationPostcode,
+      contacts,
     } = this.props;
+
     return (
       <ScrollView
         scrollEnabled={false}
@@ -122,6 +149,23 @@ class Main extends Component {
             value={destinationPostcode}
           />
         </View>
+        <View style={buttonWrapperStyle}>
+          <TouchableOpacity
+            onPress={this.handleOpenContacts}
+            style={buttonStyle}
+          >
+            <Text
+              style={styles.buttonTextStyle}
+            >
+              Add Contacts
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <ContactsList
+          contacts={contacts}
+          visible={this.state.showContacts}
+          handleClose={this.handleCloseContacts}
+        />
       </ScrollView>
     );
   }
@@ -130,6 +174,7 @@ class Main extends Component {
 Main.defaultProps = {
   mode: '',
   destinationPostcode: '',
+  contacts: [],
 };
 
 Main.propTypes = {
@@ -140,6 +185,10 @@ Main.propTypes = {
   handleUpdateOrigin: PropTypes.func.isRequired,
   handleGetContacts: PropTypes.func.isRequired,
   checkDestinationPostcode: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+  })),
 };
 
 export default Main;

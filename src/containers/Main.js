@@ -10,12 +10,14 @@ import {
 } from '../actions/journey';
 
 const mapStateToProps = (state) => {
-  const { user, journey } = state;
+  const { user, journey, contacts } = state;
   const { mode, destination } = journey;
+
   return ({
     initialized: user.initialized,
     mode,
     destinationPostcode: destination.postcode,
+    contacts,
   });
 };
 
