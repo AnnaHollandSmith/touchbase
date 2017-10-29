@@ -16,6 +16,10 @@ const styles = {
     marginLeft: 3,
     marginRight: 3,
   },
+  buttonFullWidthStyle: {
+    width: null,
+    flex: 1,
+  },
   buttonSelectedStyle: {
     backgroundColor: '#1976d2',
   },

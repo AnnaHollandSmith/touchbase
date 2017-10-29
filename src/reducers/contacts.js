@@ -8,7 +8,7 @@ const formatContacts = (contacts) => {
         ...formattedContacts,
         {
           name,
-          phoneNumber: digits,
+          mobileNumber: digits,
         },
       ];
     });

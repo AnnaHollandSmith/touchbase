@@ -34,7 +34,7 @@ class ContactsList extends Component {
     return (
       <ListItem
         name={item.name || ''}
-        phoneNumber={item.phoneNumber || ''}
+        mobileNumber={item.mobileNumber || ''}
         onItemPress={this.handlePressedItem}
       />
     );
@@ -51,7 +51,7 @@ class ContactsList extends Component {
           <FlatList
             data={contacts}
             renderItem={this.renderItem}
-            keyExtractor={item => item.phoneNumber}
+            keyExtractor={item => item.mobileNumber}
           />
         </View>
         <View>
@@ -74,7 +74,7 @@ ContactsList.propTypes = {
   visible: PropTypes.bool.isRequired,
   contacts: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
-    phoneNumber: PropTypes.string,
+    mobileNumber: PropTypes.string,
   })),
   handleClose: PropTypes.func.isRequired,
 };

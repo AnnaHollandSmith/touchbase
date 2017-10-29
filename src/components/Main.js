@@ -19,6 +19,7 @@ const {
   buttonSelectedStyle,
   buttonCenterStyle,
   inputStyle,
+  buttonFullWidthStyle,
 } = styles;
 
 class Main extends Component {
@@ -80,6 +81,9 @@ class Main extends Component {
       handleDestinationPostcodeChange,
       checkDestinationPostcode,
       contacts,
+      journey,
+      mobileNumber,
+      handleSubmit,
     } = this.props;
 
     return (
@@ -153,12 +157,24 @@ class Main extends Component {
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
             onPress={this.handleOpenContacts}
-            style={buttonStyle}
+            style={[buttonStyle, buttonFullWidthStyle]}
           >
             <Text
               style={styles.buttonTextStyle}
             >
               Add Contacts
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={buttonWrapperStyle}>
+          <TouchableOpacity
+            onPress={() => handleSubmit({ ...journey, mobileNumber })}
+            style={[buttonStyle, buttonFullWidthStyle]}
+          >
+            <Text
+              style={styles.buttonTextStyle}
+            >
+              Confirm
             </Text>
           </TouchableOpacity>
         </View>
@@ -176,6 +192,7 @@ Main.defaultProps = {
   mode: '',
   destinationPostcode: '',
   contacts: [],
+  mobileNumber: '',
 };
 
 Main.propTypes = {
@@ -188,9 +205,12 @@ Main.propTypes = {
   checkDestinationPostcode: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
-    phoneNumber: PropTypes.string,
+    mobileNumber: PropTypes.string,
   })),
+  mobileNumber: PropTypes.string,
+  journey: PropTypes.shape().isRequired,
   handleUpdateSelectedContacts: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Main;

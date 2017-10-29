@@ -6,13 +6,13 @@ class ListItem extends PureComponent {
   onPress = () => {
     this.props.onItemPress({
       name: this.props.name,
-      phoneNumber: this.props.phoneNumber,
+      mobileNumber: this.props.mobileNumber,
     });
   }
   render() {
     const {
       name,
-      phoneNumber,
+      mobileNumber,
     } = this.props;
 
     return (
@@ -21,7 +21,7 @@ class ListItem extends PureComponent {
           onPress={this.onPress}
         >
           <Text>{name}</Text>
-          <Text>{phoneNumber}</Text>
+          <Text>{mobileNumber}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -30,7 +30,7 @@ class ListItem extends PureComponent {
 
 ListItem.propTypes = {
   name: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired,
+  mobileNumber: PropTypes.string.isRequired,
   onItemPress: PropTypes.func.isRequired,
 };
 

@@ -5,6 +5,7 @@ import {
   UPDATE_DESTINATION_COORDS,
   UPDATE_DESTINATION_NOT_SET,
   UPDATE_SELECTED_CONTACTS,
+  RESET_JOURNEY,
 } from '../actions/journey';
 
 const initialState = {
@@ -83,6 +84,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         contacts,
       };
+    }
+
+    case RESET_JOURNEY: {
+      return initialState;
     }
 
     default:

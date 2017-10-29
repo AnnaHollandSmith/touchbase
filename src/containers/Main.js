@@ -8,17 +8,19 @@ import {
   updateDestinationPostcode,
   checkDestinationPostcode,
   updateSelectedContacts,
+  submitJourney,
 } from '../actions/journey';
 
 const mapStateToProps = (state) => {
   const { user, journey, contacts } = state;
   const { mode, destination } = journey;
-  console.log(journey.contacts);
   return ({
     initialized: user.initialized,
+    mobileNumber: user.mobileNumber,
     mode,
     destinationPostcode: destination.postcode,
     contacts,
+    journey,
   });
 };
 
@@ -29,6 +31,7 @@ const mapDispatchToProps = dispatch => ({
   handleDestinationPostcodeChange: postcode => dispatch(updateDestinationPostcode(postcode)),
   checkDestinationPostcode: postcode => dispatch(checkDestinationPostcode(postcode)),
   handleUpdateSelectedContacts: contacts => dispatch(updateSelectedContacts(contacts)),
+  handleSubmit: journey => dispatch(submitJourney(journey)),
 });
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(checksInitialized(Main));

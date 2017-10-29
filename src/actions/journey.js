@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Alert } from 'react-native';
 
 export const UPDATE_MODE = 'UPDATE_MODE';
 export const updateMode = mode => ({
@@ -43,3 +44,28 @@ export const updateSelectedContacts = contacts => ({
   type: UPDATE_SELECTED_CONTACTS,
   contacts,
 });
+
+export const RESET_JOURNEY = 'RESET_JOURNEY';
+const resetJourney = () => ({
+  type: RESET_JOURNEY,
+});
+
+export const submitJourney = journey => (dispatch) => {
+  const {
+    destinationSet,
+    originSet,
+    destination,
+    ...restJourney
+  } = journey;
+  const { postcode, ...restDestination } = destination;
+  const payload = {
+    ...restJourney,
+    destination: restDestination,
+  };
+  return axios.post('https://touchbaseapp.herokuapp.com/journeys', payload)
+    .then(() => {
+      dispatch(resetJourney());
+      Alert.alert('Success!', 'Your journey has been created');
+    })
+    .catch(err => console.log(err));
+};
