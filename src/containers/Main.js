@@ -9,6 +9,7 @@ import {
   checkDestinationPostcode,
   updateSelectedContacts,
   submitJourney,
+  checkIfJourneyInProgress,
 } from '../actions/journey';
 
 const mapStateToProps = (state) => {
@@ -33,6 +34,7 @@ const mapDispatchToProps = dispatch => ({
   checkDestinationPostcode: postcode => dispatch(checkDestinationPostcode(postcode)),
   handleUpdateSelectedContacts: contacts => dispatch(updateSelectedContacts(contacts)),
   handleSubmit: journey => dispatch(submitJourney(journey)),
+  checkIfJourneyInProgress: mobileNumber => dispatch(checkIfJourneyInProgress(mobileNumber)),
 });
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(checksInitialized(Main));

@@ -52,8 +52,13 @@ class Main extends Component {
   }
 
   componentWillMount() {
+    const {
+      checkIfJourneyInProgress,
+      mobileNumber,
+    } = this.props;
     this.getLocationAsync();
     this.getContactsAsync();
+    checkIfJourneyInProgress(mobileNumber);
   }
 
   async getLocationAsync() {
@@ -90,7 +95,7 @@ class Main extends Component {
     });
   }
 
-  render() {
+  renderCorrectScreen() {
     const {
       mode,
       handleModeSelect,
@@ -104,7 +109,8 @@ class Main extends Component {
       selectedContacts,
     } = this.props;
 
-    return (
+    return journey.journeyInProgress ?
+      <Text>End Journey</Text> :
       <ScrollView
         scrollEnabled={false}
         contentContainerStyle={containerStyle}
@@ -228,7 +234,12 @@ class Main extends Component {
           handleClose={this.handleCloseContacts}
           selectedContacts={selectedContacts}
         />
-      </ScrollView>
+      </ScrollView>;
+  }
+
+  render() {
+    return (
+      this.renderCorrectScreen()
     );
   }
 }
@@ -261,6 +272,7 @@ Main.propTypes = {
     name: PropTypes.string,
     mobileNumber: PropTypes.string,
   })),
+  checkIfJourneyInProgress: PropTypes.func.isRequired,
 };
 
 export default Main;

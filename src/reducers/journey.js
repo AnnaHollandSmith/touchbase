@@ -6,6 +6,8 @@ import {
   UPDATE_DESTINATION_NOT_SET,
   UPDATE_SELECTED_CONTACTS,
   RESET_JOURNEY,
+  JOURNEY_NOT_IN_PROGRESS,
+  JOURNEY_IN_PROGRESS,
 } from '../actions/journey';
 
 const initialState = {
@@ -22,6 +24,7 @@ const initialState = {
   },
   mode: '',
   contacts: [],
+  journeyInProgress: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -88,6 +91,20 @@ const reducer = (state = initialState, action) => {
 
     case RESET_JOURNEY: {
       return initialState;
+    }
+
+    case JOURNEY_IN_PROGRESS: {
+      return {
+        ...state,
+        journeyInProgress: true,
+      };
+    }
+
+    case JOURNEY_NOT_IN_PROGRESS: {
+      return {
+        ...state,
+        journeyInProgress: false,
+      };
     }
 
     default:

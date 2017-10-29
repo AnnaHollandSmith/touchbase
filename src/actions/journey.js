@@ -69,3 +69,17 @@ export const submitJourney = journey => (dispatch) => {
     })
     .catch(err => console.log(err));
 };
+
+
+export const JOURNEY_NOT_IN_PROGRESS = 'JOURNEY_NOT_IN_PROGRESS';
+export const JOURNEY_IN_PROGRESS = 'JOURNEY_IN_PROGRESS';
+export const checkIfJourneyInProgress = mobileNumber => (dispatch) => {
+  console.log(mobileNumber);
+  return axios.get(`https://touchbaseapp.herokuapp.com/journeys/${mobileNumber}`)
+    .then(() => dispatch({
+      type: JOURNEY_IN_PROGRESS,
+    }))
+    .catch(() => dispatch({
+      type: JOURNEY_NOT_IN_PROGRESS,
+    }));
+};
