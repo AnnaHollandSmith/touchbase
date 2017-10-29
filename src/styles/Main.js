@@ -46,8 +46,6 @@ const styles = {
   fieldStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-    marginLeft: 20,
   },
   inputStyle: {
     color: '#000',
