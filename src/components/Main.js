@@ -41,6 +41,9 @@ const {
   buttonPacificoTextStyle,
   extendButtonStyle,
   buttonPacificoStyle,
+  fontRalewayBold,
+  headingStyle,
+  marginBottom,
 } = styles;
 
 class Main extends Component {
@@ -132,20 +135,26 @@ class Main extends Component {
     return journey.journeyInProgress ?
       <View style={containerStyle}>
         <View style={fieldStyle}>
-          <Text style={labelStyle}>Journey in Progress</Text>
+          <Text style={[labelStyle, fontRalewayBold, headingStyle]}>Journey in Progress</Text>
         </View>
         <View style={fieldStyle}>
-          <Text style={labelStyle}>
-            {`Start: ${strftime('%B %d, %Y %H:%M:%S', journey.start)}`}
+          <Text style={[labelStyle, fontRalewayBold]}>Start</Text>
+        </View>
+        <View style={fieldStyle}>
+          <Text style={[labelStyle, marginBottom]}>
+            {strftime('%B %d, %Y %H:%M:%S', journey.start)}
           </Text>
         </View>
         <View style={fieldStyle}>
-          <Text style={labelStyle}>
-            {`ETA: ${strftime('%B %d, %Y %H:%M:%S', journey.eta)}`}
+          <Text style={[labelStyle, fontRalewayBold]}>ETA</Text>
+        </View>
+        <View style={fieldStyle}>
+          <Text style={[labelStyle, marginBottom]}>
+            {strftime('%B %d, %Y %H:%M:%S', journey.eta)}
           </Text>
         </View>
         <View style={fieldStyle}>
-          <Text style={labelStyle}>Contacts:</Text>
+          <Text style={[labelStyle, fontRalewayBold]}>Contacts</Text>
         </View>
         {
           journey.contacts.map(contact => (
@@ -195,7 +204,7 @@ class Main extends Component {
         contentContainerStyle={containerStyle}
       >
         <View style={fieldStyle}>
-          <Text style={labelStyle}>Method of Transportation</Text>
+          <Text style={[labelStyle, fontRalewayBold]}>Method of Transportation</Text>
         </View>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
@@ -246,7 +255,7 @@ class Main extends Component {
           </TouchableOpacity>
         </View>
         <View style={fieldStyle}>
-          <Text style={labelStyle}>Destination Postcode</Text>
+          <Text style={[labelStyle, fontRalewayBold]}>Destination Postcode</Text>
         </View>
         <View style={fieldStyle}>
           <TextInput
@@ -263,7 +272,7 @@ class Main extends Component {
             selectedContacts.length !== 0 && fieldMarginBottomStyle,
           ]}
         >
-          <Text style={labelStyle}>Contacts</Text>
+          <Text style={[labelStyle, fontRalewayBold]}>Contacts</Text>
         </View>
         {
           map(contact => (

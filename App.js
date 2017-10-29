@@ -13,6 +13,7 @@ store.dispatch(checkUserInitialized());
 
 const logo = require('./assets/images/touchbase.png');
 const ralewayRegular = require('./assets/Raleway/Raleway-Regular.ttf');
+const ralewayBold = require('./assets/Raleway/Raleway-Bold.ttf');
 const pacificoRegular = require('./assets/Pacifico/Pacifico-Regular.ttf');
 
 // SecureStore.deleteItemAsync('user');
@@ -32,6 +33,7 @@ class App extends Component {
   async componentWillMount() {
     await Font.loadAsync({
       'raleway-regular': ralewayRegular,
+      'raleway-bold': ralewayBold,
       'pacifico-regular': pacificoRegular,
     });
     this.setState({

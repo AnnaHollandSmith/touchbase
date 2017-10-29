@@ -93,6 +93,16 @@ const styles = {
   buttonPacificoStyle: {
     height: 60,
   },
+  fontRalewayBold: {
+    fontFamily: 'raleway-bold',
+  },
+  headingStyle: {
+    marginBottom: 20,
+    fontSize: 21,
+  },
+  marginBottom: {
+    marginBottom: 10,
+  },
 };
 
 export default styles;
