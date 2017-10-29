@@ -60,12 +60,20 @@ class Main extends Component {
     this.getLocationAsync();
     this.getContactsAsync();
     checkIfJourneyInProgress(mobileNumber);
+    this.pollJourneyInterval = setInterval(
+      () => checkIfJourneyInProgress(mobileNumber),
+      5000,
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.journey.originSet && this.props.journey.originSet) {
       this.getLocationAsync();
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.pollJourneyInterval);
   }
 
   async getLocationAsync() {
@@ -83,7 +91,7 @@ class Main extends Component {
 
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.PHONE_NUMBERS],
-      pageSize: 1000,
+      pageSize: 10,
     });
 
     this.props.handleGetContacts(data);
