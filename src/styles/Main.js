@@ -35,6 +35,13 @@ const styles = {
   buttonSelectedTextStyle: {
     color: '#fff',
   },
+  buttonPacificoTextStyle: {
+    fontFamily: 'pacifico-regular',
+    fontSize: 28,
+  },
+  extendButtonStyle: {
+    borderWidth: 0,
+  },
   containerStyle: {
     flex: 1,
     flexDirection: 'column',
@@ -46,8 +53,6 @@ const styles = {
   fieldStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-    marginLeft: 20,
   },
   inputStyle: {
     color: '#000',
@@ -84,6 +89,9 @@ const styles = {
   },
   buttonTextDisabledStyle: {
     color: '#A9A9A9',
+  },
+  buttonPacificoStyle: {
+    height: 60,
   },
 };
 

@@ -38,6 +38,9 @@ const {
   fieldMarginBottomStyle,
   buttonDisabledStyle,
   buttonTextDisabledStyle,
+  buttonPacificoTextStyle,
+  extendButtonStyle,
+  buttonPacificoStyle,
 } = styles;
 
 class Main extends Component {
@@ -126,7 +129,7 @@ class Main extends Component {
       handleExtendJourney,
     } = this.props;
 
-    return journey.journeyInProgress ?
+    return !journey.journeyInProgress ?
       <View style={containerStyle}>
         <View style={fieldStyle}>
           <Text style={labelStyle}>Journey in Progress</Text>
@@ -150,25 +153,34 @@ class Main extends Component {
         </View>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
-            onPress={() => handleExtendJourney(mobileNumber)}
-            style={[buttonStyle, buttonFullWidthStyle]}
+            onPress={() => handleCompleteJourney(mobileNumber)}
+            style={[
+              buttonStyle,
+              buttonFullWidthStyle,
+              buttonPacificoStyle,
+            ]}
           >
             <Text
-              style={styles.buttonTextStyle}
+              style={[
+                buttonTextStyle,
+                buttonPacificoTextStyle,
+              ]}
             >
-              Extend Journey
+              TouchBase
             </Text>
           </TouchableOpacity>
         </View>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
-            onPress={() => handleCompleteJourney(mobileNumber)}
-            style={[buttonStyle, buttonFullWidthStyle]}
+            onPress={() => handleExtendJourney(mobileNumber)}
+            style={[
+              buttonStyle,
+              buttonFullWidthStyle,
+              extendButtonStyle,
+            ]}
           >
-            <Text
-              style={styles.buttonTextStyle}
-            >
-              TouchBase
+            <Text style={buttonTextStyle}>
+              Extend Journey
             </Text>
           </TouchableOpacity>
         </View>
