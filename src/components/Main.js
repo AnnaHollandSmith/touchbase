@@ -61,6 +61,12 @@ class Main extends Component {
     checkIfJourneyInProgress(mobileNumber);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.journey.originSet && this.props.journey.originSet) {
+      this.getLocationAsync();
+    }
+  }
+
   async getLocationAsync() {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') return;
@@ -107,13 +113,15 @@ class Main extends Component {
       mobileNumber,
       handleSubmit,
       selectedContacts,
+      handleCompleteJourney,
+      handleExtendJourney,
     } = this.props;
 
     return journey.journeyInProgress ?
       <View style={containerStyle}>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
-            onPress={() => console.log('extend journey')}
+            onPress={() => handleExtendJourney(mobileNumber)}
             style={[buttonStyle, buttonFullWidthStyle]}
           >
             <Text
@@ -125,7 +133,7 @@ class Main extends Component {
         </View>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
-            onPress={() => console.log('touchbase')}
+            onPress={() => handleCompleteJourney(mobileNumber)}
             style={[buttonStyle, buttonFullWidthStyle]}
           >
             <Text
@@ -298,6 +306,8 @@ Main.propTypes = {
     mobileNumber: PropTypes.string,
   })),
   checkIfJourneyInProgress: PropTypes.func.isRequired,
+  handleCompleteJourney: PropTypes.func.isRequired,
+  handleExtendJourney: PropTypes.func.isRequired,
 };
 
 export default Main;

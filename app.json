@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "react-native-expo",
-    "description": "An empty new project",
-    "slug": "react-native-expo",
+    "name": "touchbase",
+    "description": "Touchbase App - Hack MCR 2017 - Get home safely",
+    "slug": "touchbase",
     "privacy": "public",
     "sdkVersion": "22.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icons/app-icon.png",
+    "icon": "./assets/icons/icon.png",
     "splash": {
       "image": "./assets/icons/icon.png",
       "resizeMode": "contain",
@@ -18,7 +18,7 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     }
   }
 }

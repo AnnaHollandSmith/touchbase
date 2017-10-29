@@ -8,6 +8,7 @@ import {
   SUBMIT_JOURNEY,
   JOURNEY_NOT_IN_PROGRESS,
   JOURNEY_IN_PROGRESS,
+  RESET_JOURNEY,
 } from '../actions/journey';
 
 const initialState = {
@@ -108,6 +109,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         journeyInProgress: false,
       };
+    }
+
+    case RESET_JOURNEY: {
+      return initialState;
     }
 
     default:

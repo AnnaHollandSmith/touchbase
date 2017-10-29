@@ -10,6 +10,8 @@ import {
   updateSelectedContacts,
   submitJourney,
   checkIfJourneyInProgress,
+  completeJourney,
+  extendJourney,
 } from '../actions/journey';
 
 const mapStateToProps = (state) => {
@@ -35,6 +37,8 @@ const mapDispatchToProps = dispatch => ({
   handleUpdateSelectedContacts: contacts => dispatch(updateSelectedContacts(contacts)),
   handleSubmit: journey => dispatch(submitJourney(journey)),
   checkIfJourneyInProgress: mobileNumber => dispatch(checkIfJourneyInProgress(mobileNumber)),
+  handleCompleteJourney: mobileNumber => dispatch(completeJourney(mobileNumber)),
+  handleExtendJourney: mobileNumber => dispatch(extendJourney(mobileNumber)),
 });
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(checksInitialized(Main));

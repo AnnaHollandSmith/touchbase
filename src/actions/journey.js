@@ -80,3 +80,30 @@ export const checkIfJourneyInProgress = mobileNumber => dispatch => (
       type: JOURNEY_NOT_IN_PROGRESS,
     }))
 );
+
+export const RESET_JOURNEY = 'RESET_JOURNEY';
+const resetJourney = () => ({
+  type: RESET_JOURNEY,
+});
+
+export const completeJourney = mobileNumber => dispatch =>
+  axios.post(
+    'https://touchbaseapp.herokuapp.com/journeys/terminate',
+    { mobileNumber },
+  )
+    .then(() => {
+      dispatch(resetJourney());
+      Alert.alert('Hooray!', 'Glad you made it home safely!');
+    })
+    .catch(err => console.log(err));
+
+export const extendJourney = mobileNumber => () =>
+  axios.post(
+    'https://touchbaseapp.herokuapp.com/journeys/extend',
+    { mobileNumber },
+  )
+    .then(() => {
+      // const { message } = data;
+      Alert.alert('No Problem!', 'We\'ve extended your journey eta');
+    })
+    .catch(err => console.log(err));
