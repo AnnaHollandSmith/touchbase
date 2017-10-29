@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { Location, Permissions } from 'expo';
+import { Contacts, Location, Permissions } from 'expo';
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
 
@@ -22,14 +22,27 @@ const {
 class Main extends Component {
   componentWillMount() {
     this.getLocationAsync();
+    this.getContactsAsync();
   }
 
   async getLocationAsync() {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status === 'granted') {
-      const { coords } = await Location.getCurrentPositionAsync({});
-      this.props.handleUpdateOrigin(coords);
-    }
+    if (status !== 'granted') return;
+
+    const { coords } = await Location.getCurrentPositionAsync({});
+
+    this.props.handleUpdateOrigin(coords);
+  }
+
+  async getContactsAsync() {
+    const { status } = await Permissions.askAsync(Permissions.CONTACTS);
+    if (status !== 'granted') return;
+
+    const { data } = await Contacts.getContactsAsync({
+      fields: [Contacts.PHONE_NUMBERS],
+    });
+
+    this.props.handleGetContacts(data);
   }
 
   render() {
@@ -103,6 +116,7 @@ Main.propTypes = {
   mode: PropTypes.string,
   handleModeSelect: PropTypes.func.isRequired,
   handleUpdateOrigin: PropTypes.func.isRequired,
+  handleGetContacts: PropTypes.func.isRequired,
 };
 
 export default Main;
