@@ -4,6 +4,7 @@ import {
   UPDATE_DESTINATION_POSTCODE,
   UPDATE_DESTINATION_COORDS,
   UPDATE_DESTINATION_NOT_SET,
+  UPDATE_SELECTED_CONTACTS,
 } from '../actions/journey';
 
 const initialState = {
@@ -73,6 +74,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         destinationSet: false,
+      };
+    }
+
+    case UPDATE_SELECTED_CONTACTS: {
+      const { contacts } = action;
+      return {
+        ...state,
+        contacts,
       };
     }
 

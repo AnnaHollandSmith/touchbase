@@ -56,7 +56,7 @@ class ContactsList extends Component {
         </View>
         <View>
           <TouchableOpacity
-            onPress={() => handleClose()}
+            onPress={() => handleClose(this.state.selectedContacts)}
           >
             <Text>Confirm</Text>
           </TouchableOpacity>

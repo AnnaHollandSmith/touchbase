@@ -59,7 +59,8 @@ class Main extends Component {
     this.props.handleGetContacts(data);
   }
 
-  handleCloseContacts() {
+  handleCloseContacts(contacts) {
+    this.props.handleUpdateSelectedContacts(contacts);
     this.setState({
       showContacts: false,
     });
@@ -189,6 +190,7 @@ Main.propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })),
+  handleUpdateSelectedContacts: PropTypes.func.isRequired,
 };
 
 export default Main;

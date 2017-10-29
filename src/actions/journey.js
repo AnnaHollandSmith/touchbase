@@ -37,3 +37,9 @@ export const checkDestinationPostcode = postcode => (dispatch) => {
       }));
   }
 };
+
+export const UPDATE_SELECTED_CONTACTS = 'UPDATE_SELECTED_CONTACTS';
+export const updateSelectedContacts = contacts => ({
+  type: UPDATE_SELECTED_CONTACTS,
+  contacts,
+});
