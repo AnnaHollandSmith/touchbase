@@ -45,11 +45,7 @@ export const updateSelectedContacts = contacts => ({
   contacts,
 });
 
-export const RESET_JOURNEY = 'RESET_JOURNEY';
-const resetJourney = () => ({
-  type: RESET_JOURNEY,
-});
-
+export const SUBMIT_JOURNEY = 'SUBMIT_JOURNEY';
 export const submitJourney = journey => (dispatch) => {
   const {
     destinationSet,
@@ -64,7 +60,9 @@ export const submitJourney = journey => (dispatch) => {
   };
   return axios.post('https://touchbaseapp.herokuapp.com/journeys', payload)
     .then(() => {
-      dispatch(resetJourney());
+      dispatch({
+        type: SUBMIT_JOURNEY,
+      });
       Alert.alert('Success!', 'Your journey has been created');
     })
     .catch(err => console.log(err));
@@ -73,13 +71,12 @@ export const submitJourney = journey => (dispatch) => {
 
 export const JOURNEY_NOT_IN_PROGRESS = 'JOURNEY_NOT_IN_PROGRESS';
 export const JOURNEY_IN_PROGRESS = 'JOURNEY_IN_PROGRESS';
-export const checkIfJourneyInProgress = mobileNumber => (dispatch) => {
-  console.log(mobileNumber);
-  return axios.get(`https://touchbaseapp.herokuapp.com/journeys/${mobileNumber}`)
+export const checkIfJourneyInProgress = mobileNumber => dispatch => (
+  axios.get(`https://touchbaseapp.herokuapp.com/journeys/${mobileNumber}`)
     .then(() => dispatch({
       type: JOURNEY_IN_PROGRESS,
     }))
     .catch(() => dispatch({
       type: JOURNEY_NOT_IN_PROGRESS,
-    }));
-};
+    }))
+);

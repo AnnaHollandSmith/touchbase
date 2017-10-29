@@ -5,7 +5,7 @@ import {
   UPDATE_DESTINATION_COORDS,
   UPDATE_DESTINATION_NOT_SET,
   UPDATE_SELECTED_CONTACTS,
-  RESET_JOURNEY,
+  SUBMIT_JOURNEY,
   JOURNEY_NOT_IN_PROGRESS,
   JOURNEY_IN_PROGRESS,
 } from '../actions/journey';
@@ -89,8 +89,11 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case RESET_JOURNEY: {
-      return initialState;
+    case SUBMIT_JOURNEY: {
+      return {
+        ...initialState,
+        journeyInProgress: true,
+      };
     }
 
     case JOURNEY_IN_PROGRESS: {

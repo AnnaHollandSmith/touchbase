@@ -76,7 +76,7 @@ class Main extends Component {
 
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.PHONE_NUMBERS],
-      pageSize: 10,
+      pageSize: 1000,
     });
 
     this.props.handleGetContacts(data);
@@ -110,7 +110,32 @@ class Main extends Component {
     } = this.props;
 
     return journey.journeyInProgress ?
-      <Text>End Journey</Text> :
+      <View style={containerStyle}>
+        <View style={buttonWrapperStyle}>
+          <TouchableOpacity
+            onPress={() => console.log('extend journey')}
+            style={[buttonStyle, buttonFullWidthStyle]}
+          >
+            <Text
+              style={styles.buttonTextStyle}
+            >
+              Extend journey
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={buttonWrapperStyle}>
+          <TouchableOpacity
+            onPress={() => console.log('touchbase')}
+            style={[buttonStyle, buttonFullWidthStyle]}
+          >
+            <Text
+              style={styles.buttonTextStyle}
+            >
+              TouchBase
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View> :
       <ScrollView
         scrollEnabled={false}
         contentContainerStyle={containerStyle}
