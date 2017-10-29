@@ -115,7 +115,7 @@ const reducer = (state = initialState, action) => {
       const { start } = action;
       return {
         ...state,
-        start,
+        start: new Date(start),
       };
     }
 
@@ -123,7 +123,7 @@ const reducer = (state = initialState, action) => {
       const { eta } = action;
       return {
         ...state,
-        eta,
+        eta: new Date(eta),
       };
     }
 

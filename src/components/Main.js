@@ -4,6 +4,7 @@ import { Contacts, Location, Permissions } from 'expo';
 import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
 import uuid from 'uuid';
 import { map, isEmpty } from 'ramda';
+import strftime from 'strftime';
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
 
@@ -119,6 +120,26 @@ class Main extends Component {
 
     return journey.journeyInProgress ?
       <View style={containerStyle}>
+        <View style={fieldStyle}>
+          <Text style={labelStyle}>Journey in Progress</Text>
+        </View>
+        <View style={fieldStyle}>
+          <Text style={labelStyle}>
+            {`Start: ${strftime('%B %d, %Y %H:%M:%S', journey.start)}`}
+          </Text>
+        </View>
+        <View style={fieldStyle}>
+          <Text style={labelStyle}>
+            {`ETA: ${strftime('%B %d, %Y %H:%M:%S', journey.eta)}`}
+          </Text>
+        </View>
+        <View style={fieldStyle}>
+          <Text style={labelStyle}>
+            {`Contacts: ${
+              journey.contacts.map(contact => contact.name).join(', ')
+            }`}
+          </Text>
+        </View>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
             onPress={() => handleExtendJourney(mobileNumber)}
@@ -127,7 +148,7 @@ class Main extends Component {
             <Text
               style={styles.buttonTextStyle}
             >
-              Extend journey
+              Extend Journey
             </Text>
           </TouchableOpacity>
         </View>
