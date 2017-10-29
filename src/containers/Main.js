@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
     destinationPostcode: destination.postcode,
     contacts,
     journey,
+    selectedContacts: journey.contacts,
   });
 };
 

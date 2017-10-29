@@ -84,6 +84,7 @@ class Main extends Component {
       journey,
       mobileNumber,
       handleSubmit,
+      selectedContacts,
     } = this.props;
 
     return (
@@ -154,6 +155,12 @@ class Main extends Component {
             value={destinationPostcode}
           />
         </View>
+        <View style={fieldStyle}>
+          <Text style={labelStyle}>Contacts</Text>
+        </View>
+        {
+
+        }
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
             onPress={this.handleOpenContacts}
@@ -182,6 +189,7 @@ class Main extends Component {
           contacts={contacts}
           visible={this.state.showContacts}
           handleClose={this.handleCloseContacts}
+          selectedContacts={selectedContacts}
         />
       </ScrollView>
     );
@@ -193,6 +201,7 @@ Main.defaultProps = {
   destinationPostcode: '',
   contacts: [],
   mobileNumber: '',
+  selectedContacts: [],
 };
 
 Main.propTypes = {
@@ -211,6 +220,10 @@ Main.propTypes = {
   journey: PropTypes.shape().isRequired,
   handleUpdateSelectedContacts: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  selectedContacts: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    mobileNumber: PropTypes.string,
+  })),
 };
 
 export default Main;

@@ -22,11 +22,11 @@ const toggle = (item, selection) => (
 );
 
 class ContactsList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      selectedContacts: [],
+      selectedContacts: this.props.selectedContacts,
     };
     this.handlePressedItem = this.handlePressedItem.bind(this);
   }
@@ -40,11 +40,13 @@ class ContactsList extends Component {
   }
 
   renderItem = ({ item }) => {
+    const { selectedContacts } = this.state;
     return (
       <ListItem
         name={item.name || ''}
         mobileNumber={item.mobileNumber || ''}
         onItemPress={this.handlePressedItem}
+        inSelected={contains(item, selectedContacts)}
       />
     );
   }
@@ -82,6 +84,7 @@ class ContactsList extends Component {
 
 ContactsList.defaultProps = {
   contacts: [],
+  selectedContacts: [],
 };
 
 ContactsList.propTypes = {
@@ -91,6 +94,10 @@ ContactsList.propTypes = {
     mobileNumber: PropTypes.string,
   })),
   handleClose: PropTypes.func.isRequired,
+  selectedContacts: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    mobileNumber: PropTypes.string,
+  })),
 };
 
 export default ContactsList;

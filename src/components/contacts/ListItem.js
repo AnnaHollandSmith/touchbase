@@ -12,11 +12,11 @@ const {
 } = styles;
 
 class ListItem extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      selected: false
+      selected: this.props.inSelected,
     }
   }
   onPress = () => {
@@ -71,6 +71,7 @@ ListItem.propTypes = {
   name: PropTypes.string.isRequired,
   mobileNumber: PropTypes.string.isRequired,
   onItemPress: PropTypes.func.isRequired,
+  inSelected: PropTypes.bool.isRequired,
 };
 
 export default ListItem;
