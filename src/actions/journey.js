@@ -102,8 +102,8 @@ export const extendJourney = mobileNumber => () =>
     'https://touchbaseapp.herokuapp.com/journeys/extend',
     { mobileNumber },
   )
-    .then(() => {
-      // const { message } = data;
-      Alert.alert('No Problem!', 'We\'ve extended your journey eta');
+    .then(({ data }) => {
+      const { message } = data;
+      Alert.alert('No Problem!', message);
     })
     .catch(err => console.log(err));
