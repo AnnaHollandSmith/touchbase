@@ -2,9 +2,18 @@
 import React, { Component } from 'react';
 import { Modal, View, FlatList, Text, TouchableOpacity } from 'react-native';
 import { reject, equals, contains } from 'ramda';
+import uuid from 'uuid';
 import PropTypes from 'prop-types';
 
 import ListItem from './ListItem';
+import styles from '../../styles/List';
+
+const {
+  containerStyle,
+  touchableOpacityStyle,
+  textStyle,
+  viewListStyle,
+} = styles;
 
 const toggle = (item, selection) => (
   contains(item, selection) ?
@@ -47,18 +56,23 @@ class ContactsList extends Component {
         visible={visible}
         animationType="slide"
       >
-        <View>
-          <FlatList
-            data={contacts}
-            renderItem={this.renderItem}
-            keyExtractor={item => item.mobileNumber}
-          />
-        </View>
-        <View>
+        <View style={containerStyle}>
+          <View style={viewListStyle}>
+            <FlatList
+              data={contacts}
+              renderItem={this.renderItem}
+              keyExtractor={() => uuid()}
+            />
+          </View>
           <TouchableOpacity
             onPress={() => handleClose(this.state.selectedContacts)}
+            style={touchableOpacityStyle}
           >
-            <Text>Confirm</Text>
+            <Text
+              style={textStyle}
+            >
+              Confirm
+            </Text>
           </TouchableOpacity>
         </View>
       </Modal>
