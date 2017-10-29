@@ -3,12 +3,23 @@ import PropTypes from 'prop-types';
 import { Contacts, Location, Permissions } from 'expo';
 import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
 import uuid from 'uuid';
-import { map } from 'ramda';
+import { map, isEmpty } from 'ramda';
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
 
 import ContactsList from './contacts/List';
 import styles from '../styles/Main';
+
+const invalidJourney = (journey) => {
+  const returnValue = (
+    isEmpty(journey.mode) ||
+    !journey.destinationSet ||
+    !journey.originSet ||
+    isEmpty(journey.contacts)
+  );
+
+  return returnValue;
+};
 
 const {
   containerStyle,
@@ -24,6 +35,8 @@ const {
   buttonFullWidthStyle,
   contactViewStyle,
   fieldMarginBottomStyle,
+  buttonDisabledStyle,
+  buttonTextDisabledStyle,
 } = styles;
 
 class Main extends Component {
@@ -192,10 +205,18 @@ class Main extends Component {
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
             onPress={() => handleSubmit({ ...journey, mobileNumber })}
-            style={[buttonStyle, buttonFullWidthStyle]}
+            style={[
+              buttonStyle,
+              buttonFullWidthStyle,
+              invalidJourney(journey) && buttonDisabledStyle,
+            ]}
+            disabled={invalidJourney(journey)}
           >
             <Text
-              style={styles.buttonTextStyle}
+              style={[
+                buttonTextStyle,
+                invalidJourney(journey) && buttonTextDisabledStyle,
+              ]}
             >
               Confirm
             </Text>

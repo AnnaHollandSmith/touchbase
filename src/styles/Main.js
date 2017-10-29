@@ -77,7 +77,13 @@ const styles = {
   },
   fieldMarginBottomStyle: {
     marginBottom: 20,
-  }
+  },
+  buttonDisabledStyle: {
+    borderColor: '#A9A9A9',
+  },
+  buttonTextDisabledStyle: {
+    color: '#A9A9A9',
+  },
 };
 
 export default styles;
