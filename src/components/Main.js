@@ -94,7 +94,7 @@ class Main extends Component {
 
     const { data } = await Contacts.getContactsAsync({
       fields: [Contacts.PHONE_NUMBERS],
-      pageSize: 10,
+      pageSize: 1000,
     });
 
     this.props.handleGetContacts(data);
@@ -129,7 +129,7 @@ class Main extends Component {
       handleExtendJourney,
     } = this.props;
 
-    return !journey.journeyInProgress ?
+    return journey.journeyInProgress ?
       <View style={containerStyle}>
         <View style={fieldStyle}>
           <Text style={labelStyle}>Journey in Progress</Text>
@@ -145,12 +145,17 @@ class Main extends Component {
           </Text>
         </View>
         <View style={fieldStyle}>
-          <Text style={labelStyle}>
-            {`Contacts: ${
-              journey.contacts.map(contact => contact.name).join(', ')
-            }`}
-          </Text>
+          <Text style={labelStyle}>Contacts:</Text>
         </View>
+        {
+          journey.contacts.map(contact => (
+            <View key={uuid()} style={fieldStyle}>
+              <Text style={labelStyle}>
+                {contact.name}
+              </Text>
+            </View>
+          ))
+        }
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
             onPress={() => handleCompleteJourney(mobileNumber)}
