@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Contacts, Location, Permissions } from 'expo';
 import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
+import uuid from 'uuid';
+import { map } from 'ramda';
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
 
@@ -20,6 +22,8 @@ const {
   buttonCenterStyle,
   inputStyle,
   buttonFullWidthStyle,
+  contactViewStyle,
+  fieldMarginBottomStyle,
 } = styles;
 
 class Main extends Component {
@@ -155,11 +159,23 @@ class Main extends Component {
             value={destinationPostcode}
           />
         </View>
-        <View style={fieldStyle}>
+        <View
+          style={[
+            fieldStyle,
+            selectedContacts.length !== 0 && fieldMarginBottomStyle,
+          ]}
+        >
           <Text style={labelStyle}>Contacts</Text>
         </View>
         {
-
+          map(contact => (
+            <View
+              key={`selectedContact--${uuid()}`}
+              style={contactViewStyle}
+            >
+              <Text style={labelStyle}>{contact.name}</Text>
+            </View>
+          ), selectedContacts)
         }
         <View style={buttonWrapperStyle}>
           <TouchableOpacity

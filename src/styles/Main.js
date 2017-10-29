@@ -17,8 +17,8 @@ const styles = {
     marginRight: 3,
   },
   buttonFullWidthStyle: {
-    width: null,
-    flex: 1,
+    width: 306,
+    height: 40,
   },
   buttonSelectedStyle: {
     backgroundColor: '#1976d2',
@@ -71,6 +71,13 @@ const styles = {
     fontFamily: 'raleway-regular',
     fontSize: 18,
   },
+  contactViewStyle: {
+    width: 200,
+    marginBottom: 10,
+  },
+  fieldMarginBottomStyle: {
+    marginBottom: 20,
+  }
 };
 
 export default styles;
