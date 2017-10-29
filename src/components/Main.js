@@ -39,6 +39,7 @@ class Main extends Component {
       handleModeSelect,
       destinationPostcode,
       handleDestinationPostcodeChange,
+      checkDestinationPostcode,
     } = this.props;
     return (
       <ScrollView
@@ -101,8 +102,9 @@ class Main extends Component {
         </View>
         <View style={fieldStyle}>
           <TextInput
-            autocorrect={false}
+            autoCorrect={false}
             onChangeText={handleDestinationPostcodeChange}
+            onBlur={() => checkDestinationPostcode(destinationPostcode)}
             style={inputStyle}
             value={destinationPostcode}
           />
@@ -123,6 +125,7 @@ Main.propTypes = {
   handleDestinationPostcodeChange: PropTypes.func.isRequired,
   handleModeSelect: PropTypes.func.isRequired,
   handleUpdateOrigin: PropTypes.func.isRequired,
+  checkDestinationPostcode: PropTypes.func.isRequired,
 };
 
 export default Main;

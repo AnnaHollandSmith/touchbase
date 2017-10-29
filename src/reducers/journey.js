@@ -2,6 +2,8 @@ import {
   UPDATE_MODE,
   UPDATE_ORIGIN,
   UPDATE_DESTINATION_POSTCODE,
+  UPDATE_DESTINATION_COORDS,
+  UPDATE_DESTINATION_NOT_SET,
 } from '../actions/journey';
 
 const initialState = {
@@ -51,6 +53,26 @@ const reducer = (state = initialState, action) => {
           ...state.destination,
           postcode,
         },
+      };
+    }
+
+    case UPDATE_DESTINATION_COORDS: {
+      const { lat, lng } = action;
+      return {
+        ...state,
+        destinationSet: true,
+        destination: {
+          ...state.destination,
+          lat,
+          lng,
+        },
+      };
+    }
+
+    case UPDATE_DESTINATION_NOT_SET: {
+      return {
+        ...state,
+        destinationSet: false,
       };
     }
 

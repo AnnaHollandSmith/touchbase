@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 export const UPDATE_MODE = 'UPDATE_MODE';
 export const updateMode = mode => ({
@@ -17,3 +17,23 @@ export const updateDestinationPostcode = postcode => ({
   type: UPDATE_DESTINATION_POSTCODE,
   postcode,
 });
+
+export const UPDATE_DESTINATION_COORDS = 'UPDATE_DESTINATION_COORDS';
+export const UPDATE_DESTINATION_NOT_SET = 'UPDATE_DESTINATION_NOT_SET';
+export const checkDestinationPostcode = postcode => (dispatch) => {
+  if (postcode.length > 0) {
+    axios.get(`https://postcodes.io/postcodes/${postcode.replace(' ', '')}`)
+      .then(({ data }) => {
+        const { result } = data;
+        const { latitude, longitude } = result;
+        dispatch({
+          type: UPDATE_DESTINATION_COORDS,
+          lat: latitude,
+          lng: longitude,
+        });
+      })
+      .catch(() => dispatch({
+        type: UPDATE_DESTINATION_NOT_SET,
+      }));
+  }
+};

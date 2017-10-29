@@ -17,7 +17,7 @@ const Signup = ({
     <View style={styles.fieldStyle}>
       <Text style={styles.labelStyle}>Name</Text>
       <TextInput
-        autocorrect={false}
+        autoCorrect={false}
         onChangeText={handleNameChange}
         style={styles.inputStyle}
         value={user.name}
@@ -26,7 +26,7 @@ const Signup = ({
     <View style={styles.fieldStyle}>
       <Text style={styles.labelStyle}>Mobile Number</Text>
       <TextInput
-        autocorrect={false}
+        autoCorrect={false}
         onChangeText={handleMobileNumberChange}
         style={styles.inputStyle}
         value={user.mobileNumber}

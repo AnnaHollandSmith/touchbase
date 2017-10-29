@@ -5,6 +5,7 @@ import {
   updateMode,
   updateOrigin,
   updateDestinationPostcode,
+  checkDestinationPostcode,
 } from '../actions/journey';
 
 const mapStateToProps = (state) => {
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
   handleModeSelect: mode => dispatch(updateMode(mode)),
   handleUpdateOrigin: origin => dispatch(updateOrigin(origin)),
   handleDestinationPostcodeChange: postcode => dispatch(updateDestinationPostcode(postcode)),
+  checkDestinationPostcode: postcode => dispatch(checkDestinationPostcode(postcode)),
 });
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(checksInitialized(Main));
