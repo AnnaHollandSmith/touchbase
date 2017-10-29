@@ -5,7 +5,8 @@ import {
   UPDATE_DESTINATION_COORDS,
   UPDATE_DESTINATION_NOT_SET,
   UPDATE_SELECTED_CONTACTS,
-  SUBMIT_JOURNEY,
+  UPDATE_JOURNEY_START,
+  UPDATE_JOURNEY_ETA,
   JOURNEY_NOT_IN_PROGRESS,
   JOURNEY_IN_PROGRESS,
   RESET_JOURNEY,
@@ -26,6 +27,8 @@ const initialState = {
   mode: '',
   contacts: [],
   journeyInProgress: false,
+  start: new Date(),
+  eta: new Date(),
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,8 +48,8 @@ const reducer = (state = initialState, action) => {
         originSet: true,
         origin: {
           ...state.origin,
-          lat: origin.latitude,
-          lng: origin.longitude,
+          lat: origin.latitude || origin.lat,
+          lng: origin.longitude || origin.lng,
         },
       };
     }
@@ -90,13 +93,6 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case SUBMIT_JOURNEY: {
-      return {
-        ...initialState,
-        journeyInProgress: true,
-      };
-    }
-
     case JOURNEY_IN_PROGRESS: {
       return {
         ...state,
@@ -113,6 +109,22 @@ const reducer = (state = initialState, action) => {
 
     case RESET_JOURNEY: {
       return initialState;
+    }
+
+    case UPDATE_JOURNEY_START: {
+      const { start } = action;
+      return {
+        ...state,
+        start,
+      };
+    }
+
+    case UPDATE_JOURNEY_ETA: {
+      const { eta } = action;
+      return {
+        ...state,
+        eta,
+      };
     }
 
     default:
