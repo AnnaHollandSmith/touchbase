@@ -124,20 +124,6 @@ class Main extends Component {
       <View style={containerStyle}>
         <View style={buttonWrapperStyle}>
           <TouchableOpacity
-            onPress={() => handleExtendJourney(mobileNumber)}
-            style={[
-              buttonStyle,
-              buttonFullWidthStyle,
-              extendButtonStyle,
-            ]}
-          >
-            <Text style={buttonTextStyle}>
-              Extend journey
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={buttonWrapperStyle}>
-          <TouchableOpacity
             onPress={() => handleCompleteJourney(mobileNumber)}
             style={[
               buttonStyle,
@@ -152,6 +138,20 @@ class Main extends Component {
               ]}
             >
               TouchBase
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={buttonWrapperStyle}>
+          <TouchableOpacity
+            onPress={() => handleExtendJourney(mobileNumber)}
+            style={[
+              buttonStyle,
+              buttonFullWidthStyle,
+              extendButtonStyle,
+            ]}
+          >
+            <Text style={buttonTextStyle}>
+              Extend journey
             </Text>
           </TouchableOpacity>
         </View>
