@@ -44,3 +44,14 @@ export const checkUserInitialized = () => (dispatch) => {
     .then(user => user && dispatch(initializeUser(JSON.parse(user))))
     .catch(err => console.log(err));
 };
+
+export const RESET_USER = 'RESET_USER';
+const resetUser = () => ({
+  type: RESET_USER,
+});
+
+export const logout = () => (dispatch) => {
+  SecureStore.deleteItemAsync('user')
+    .then(() => dispatch(resetUser()))
+    .catch(err => console.log(err));
+};

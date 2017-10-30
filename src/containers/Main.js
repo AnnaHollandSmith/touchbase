@@ -13,6 +13,7 @@ import {
   completeJourney,
   extendJourney,
 } from '../actions/journey';
+import { logout } from '../actions/user';
 
 const mapStateToProps = (state) => {
   const { user, journey, contacts } = state;
@@ -39,6 +40,7 @@ const mapDispatchToProps = dispatch => ({
   checkIfJourneyInProgress: mobileNumber => dispatch(checkIfJourneyInProgress(mobileNumber)),
   handleCompleteJourney: mobileNumber => dispatch(completeJourney(mobileNumber)),
   handleExtendJourney: mobileNumber => dispatch(extendJourney(mobileNumber)),
+  handleLogout: () => dispatch(logout()),
 });
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(checksInitialized(Main));

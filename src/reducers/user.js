@@ -1,4 +1,4 @@
-import { UPDATE_NAME, UPDATE_MOBILE_NUMBER, INITIALIZE_USER } from '../actions/user';
+import { UPDATE_NAME, UPDATE_MOBILE_NUMBER, INITIALIZE_USER, RESET_USER } from '../actions/user';
 
 const initialState = {
   initialized: false,
@@ -33,6 +33,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         mobileNumber,
       };
+    }
+
+    case RESET_USER: {
+      return initialState;
     }
 
     default:

@@ -130,6 +130,7 @@ class Main extends Component {
       selectedContacts,
       handleCompleteJourney,
       handleExtendJourney,
+      handleLogout,
     } = this.props;
 
     return journey.journeyInProgress ?
@@ -316,6 +317,23 @@ class Main extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+        <View style={buttonWrapperStyle}>
+          <TouchableOpacity
+            onPress={handleLogout}
+            style={[
+              buttonStyle,
+              buttonFullWidthStyle
+            ]}
+          >
+            <Text
+              style={[
+                buttonTextStyle,
+              ]}
+            >
+              Logout
+            </Text>
+          </TouchableOpacity>
+        </View>
         <ContactsList
           contacts={contacts}
           visible={this.state.showContacts}
@@ -363,6 +381,7 @@ Main.propTypes = {
   checkIfJourneyInProgress: PropTypes.func.isRequired,
   handleCompleteJourney: PropTypes.func.isRequired,
   handleExtendJourney: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default Main;
