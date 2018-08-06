@@ -7,6 +7,8 @@ _The strange surroundings we are filming in are actually those of the Manchester
 
 ### We didn't win (but we were runner's up!)
 
+_And here's what the judges thought of our entry:_
+
 ![](touchbase.png)
 
 ## setup
