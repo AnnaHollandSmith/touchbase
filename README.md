@@ -2,6 +2,10 @@
 
 Touchbase was our entry to [Hack Manchester](https://www.hac100.com/).
 
+Here's a lovely picture of us all at the start, before the sleep deprivation and the over-caffeination.
+
+![](start.png)
+
 The hackathon also required that all entries had a short video introduction to the team and the product. You can take a look at our over on youtube: https://www.hac100.com/
 _The strange surroundings we are filming in are actually those of the Manchester_ [Museum of Science and Industry](https://www.msimanchester.org.uk/)
 
